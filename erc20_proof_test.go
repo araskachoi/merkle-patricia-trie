@@ -16,6 +16,8 @@ import (
 )
 
 func TestERC20(t *testing.T) {
+	fmt.Println("RUNNING TEST: TestERC20")
+	fmt.Println("IN FILE: erc20_proof_test.go")
 
 	erc20Address := common.HexToAddress("0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48")
 	tokenHolder := common.HexToAddress("0x467d543e5e4e41aeddf3b6d1997350dd9820a173")
@@ -33,6 +35,9 @@ func TestERC20(t *testing.T) {
 }
 
 func VerifyStorageProof(result *StorageStateResult) error {
+	fmt.Println("RUNNING TEST: VerifyStorageProof")
+	fmt.Println("IN FILE: erc20_proof_test.go")
+
 	storageHash := result.StorageHash
 	storageProof := result.StorageProof[0]
 	value, err := rlp.EncodeToBytes(storageProof.Value)
@@ -59,6 +64,9 @@ func VerifyStorageProof(result *StorageStateResult) error {
 }
 
 func FindBalanceForERC20TokenHolder(contractAddress common.Address, tokenHolder common.Address, blockNumber uint64) (int, *StorageStateResult, error) {
+	fmt.Println("RUNNING TEST: FindBalanceForERC20TokenHolder")
+	fmt.Println("IN FILE: erc20_proof_test.go")
+
 	// iterate through each slot index until found some data stored in the computed location
 	for i := 0; i < 20; i++ {
 		result, err := FindBalanceForERC20TokenHolderAtSlot(contractAddress, tokenHolder, blockNumber, i)
@@ -82,6 +90,9 @@ func FindBalanceForERC20TokenHolder(contractAddress common.Address, tokenHolder 
 }
 
 func FindBalanceForERC20TokenHolderAtSlot(contractAddress common.Address, tokenHolder common.Address, blockNumber uint64, slotIndex int) (*StorageStateResult, error) {
+	fmt.Println("RUNNING TEST: FindBalanceForERC20TokenHolderAtSlot")
+	fmt.Println("IN FILE: erc20_proof_test.go")
+
 	slot := GetSlotForERC20TokenHolder(slotIndex, tokenHolder)
 	fmt.Println(
 		fmt.Sprintf("if slot index for map is %v, 0x467d543e5e4e41aeddf3b6d1997350dd9820a173 's token is stored at %x",
@@ -101,6 +112,8 @@ func FindBalanceForERC20TokenHolderAtSlot(contractAddress common.Address, tokenH
 }
 
 func RequestEthGetProof(contractAddress common.Address, keys []hexutil.Bytes, blockNumber uint64) (*StorageStateResult, error) {
+	fmt.Println("RUNNING TEST: RequestEthGetProof")
+	fmt.Println("IN FILE: erc20_proof_test.go")
 
 	// ▸ curl https://eth-mainnet.g.alchemy.com/v2/ \
 	//            -X POST \

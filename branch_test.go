@@ -8,6 +8,8 @@ import (
 )
 
 func TestBranch(t *testing.T) {
+	fmt.Println("RUNNING TEST: TestBranch")
+	fmt.Println("IN FILE: branch_test.go")
 	nibbles, value := []byte{5, 0, 6}, []byte("coin")
 	leaf, err := NewLeafNodeFromNibbleBytes(nibbles, value)
 	require.NoError(t, err)

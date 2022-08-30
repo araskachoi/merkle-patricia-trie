@@ -21,6 +21,8 @@ type AccountState struct {
 }
 
 func TestStorageProof(t *testing.T) {
+	fmt.Println("RUNNING TEST: TestStorageProof")
+	fmt.Println("IN FILE: account_proof_test.go")
 	// 1ee3017a85544556ea847c203623a9c84efdb77fa4951a5b01296d9aacefc5f7
 	account1Hash := crypto.Keccak256(common.HexToAddress("0x24264ae01b1abbc9a91e18926818ad5cbf39017b").Bytes())
 	accountState1, err := rlp.EncodeToBytes([]interface{}{

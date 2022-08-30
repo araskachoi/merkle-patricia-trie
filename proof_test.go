@@ -9,6 +9,9 @@ import (
 )
 
 func TestEthProof(t *testing.T) {
+	fmt.Println("RUNNING TEST: TestEthProof")
+	fmt.Println("IN FILE: proof_test.go")
+
 	mpt := new(trie.Trie)
 	mpt.Update([]byte{1, 2, 3}, []byte("hello"))
 	mpt.Update([]byte{1, 2, 3, 4, 5}, []byte("world"))
@@ -23,6 +26,9 @@ func TestEthProof(t *testing.T) {
 }
 
 func TestMyTrie(t *testing.T) {
+	fmt.Println("RUNNING TEST: TestMyTrie")
+	fmt.Println("IN FILE: proof_test.go")
+
 	tr := NewTrie()
 	tr.Put([]byte{1, 2, 3}, []byte("hello"))
 	tr.Put([]byte{1, 2, 3, 4, 5}, []byte("world"))
@@ -35,6 +41,9 @@ func TestMyTrie(t *testing.T) {
 }
 
 func TestProveAndVerifyProof(t *testing.T) {
+	fmt.Println("RUNNING TEST: TestProveAndVerifyProof")
+	fmt.Println("IN FILE: proof_test.go")
+
 	t.Run("should not generate proof for non-exist key", func(t *testing.T) {
 		tr := NewTrie()
 		tr.Put([]byte{1, 2, 3}, []byte("hello"))

@@ -8,6 +8,9 @@ import (
 )
 
 func TestExtensionNode(t *testing.T) {
+	fmt.Println("RUNNING TEST: TestExtensionNode")
+	fmt.Println("IN FILE: extension_test.go")
+
 	nibbles, value := []byte{5, 0, 6}, []byte("coin")
 	leaf, err := NewLeafNodeFromNibbleBytes(nibbles, value)
 	require.NoError(t, err)

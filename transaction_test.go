@@ -18,6 +18,8 @@ import (
 )
 
 func TestTransactionRootAndProof(t *testing.T) {
+	fmt.Println("RUNNING TEST: TestTransactionRootAndProof")
+	fmt.Println("IN FILE: transaction_test.go")
 
 	trie := NewTrie()
 
@@ -65,6 +67,9 @@ func TestTransactionRootAndProof(t *testing.T) {
 }
 
 func TestTransactionFromJSON(t *testing.T) {
+	fmt.Println("RUNNING TEST: TestTransactionFromJSON")
+	fmt.Println("IN FILE: transaction_test.go")
+
 	tx := TransactionJSON(t)
 	require.Equal(t, uint64(0x144), tx.Nonce())
 
@@ -90,6 +95,9 @@ func TestTransactionFromJSON(t *testing.T) {
 }
 
 func TestTransactionRLP(t *testing.T) {
+	fmt.Println("RUNNING TEST: TestTransactionRLP")
+	fmt.Println("IN FILE: transaction_test.go")
+
 	tx := TransactionJSON(t)
 
 	transaction := FromEthTransaction(tx)
@@ -106,6 +114,9 @@ func TestTransactionRLP(t *testing.T) {
 }
 
 func TransactionJSON(t *testing.T) *types.Transaction {
+	fmt.Println("RUNNING TEST: TransactionJSON")
+	fmt.Println("IN FILE: transaction_test.go")
+
 	jsonFile, err := os.Open("transaction.json")
 	defer jsonFile.Close()
 	require.NoError(t, err)
@@ -117,6 +128,9 @@ func TransactionJSON(t *testing.T) *types.Transaction {
 }
 
 func TransactionsJSON(t *testing.T) []*types.Transaction {
+	fmt.Println("RUNNING TEST: TransactionsJSON")
+	fmt.Println("IN FILE: transaction_test.go")
+
 	jsonFile, err := os.Open("transactions.json")
 	defer jsonFile.Close()
 	require.NoError(t, err)
@@ -128,6 +142,9 @@ func TransactionsJSON(t *testing.T) []*types.Transaction {
 }
 
 func FromEthTransaction(t *types.Transaction) *Transaction {
+	fmt.Println("RUNNING TEST: FromEthTransaction")
+	fmt.Println("IN FILE: transaction_test.go")
+
 	v, r, s := t.RawSignatureValues()
 	return &Transaction{
 		AccountNonce: t.Nonce(),
@@ -143,6 +160,9 @@ func FromEthTransaction(t *types.Transaction) *Transaction {
 }
 
 func TestTrieWithOneTx(t *testing.T) {
+	fmt.Println("RUNNING TEST: TestTrieWithOneTx")
+	fmt.Println("IN FILE: transaction_test.go")
+
 	key, err := rlp.EncodeToBytes(uint(0))
 	require.NoError(t, err)
 
@@ -160,6 +180,8 @@ func TestTrieWithOneTx(t *testing.T) {
 }
 
 func TestTrieWithTwoTxs(t *testing.T) {
+	fmt.Println("RUNNING TEST: TestTrieWithTwoTxs")
+	fmt.Println("IN FILE: transaction_test.go")
 
 	txs := TransactionsJSON(t)
 	txs = txs[:2]
@@ -195,6 +217,9 @@ func TestTrieWithTwoTxs(t *testing.T) {
 }
 
 func TestTrieWithHash(t *testing.T) {
+	fmt.Println("RUNNING TEST: TestTrieWithHash")
+	fmt.Println("IN FILE: transaction_test.go")
+
 	trie := NewTrie()
 	key0, err := rlp.EncodeToBytes(uint(0))
 	require.NoError(t, err)
@@ -210,6 +235,9 @@ func TestTrieWithHash(t *testing.T) {
 }
 
 func TestTrieWithBlockTxs(t *testing.T) {
+	fmt.Println("RUNNING TEST: TestTrieWithBlockTxs")
+	fmt.Println("IN FILE: transaction_test.go")
+
 	txs := TransactionsJSON(t)
 
 	trie := NewTrie()
@@ -231,6 +259,9 @@ func TestTrieWithBlockTxs(t *testing.T) {
 }
 
 func Test130Items(t *testing.T) {
+	fmt.Println("RUNNING TEST: Test130Items")
+	fmt.Println("IN FILE: transaction_test.go")
+
 	trie := NewTrie()
 	value, _ := hex.DecodeString("80")
 	for i := 0; i < 250; i++ {

@@ -28,6 +28,8 @@ type EthRPCGetProofResponse struct {
 }
 
 func TestEIP1186Proof(t *testing.T) {
+	fmt.Println("RUNNING TEST: TestEIP1186Proof")
+	fmt.Println("IN FILE: eip1186_proof_test.go")
 
 	// open the downloaded proof data that is requested from eth_getProof RPC call
 	// using the following query to get the json data:

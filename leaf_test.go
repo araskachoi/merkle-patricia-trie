@@ -10,6 +10,9 @@ import (
 )
 
 func printEachCalculationSteps(key, value []byte, isLeaf bool) map[string]string {
+	fmt.Println("RUNNING TEST: printEachCalculationSteps")
+	fmt.Println("IN FILE: leaf_test.go")
+
 	hexs := make(map[string]string)
 	hexs["key in nibbles"] = fmt.Sprintf("%x", FromBytes(key))
 	hexs["key in nibbles, and prefixed"] = fmt.Sprintf("%x", ToPrefixed(FromBytes(key), isLeaf))
@@ -27,6 +30,9 @@ func printEachCalculationSteps(key, value []byte, isLeaf bool) map[string]string
 }
 
 func TestLeafHash(t *testing.T) {
+	fmt.Println("RUNNING TEST: TestLeafHash")
+	fmt.Println("IN FILE: leaf_test.go")
+
 	require.Equal(t, "01020304", fmt.Sprintf("%x", []byte{1, 2, 3, 4}))
 	require.Equal(t, "76657262", fmt.Sprintf("%x", []byte("verb")))
 
@@ -43,6 +49,9 @@ func TestLeafHash(t *testing.T) {
 }
 
 func Test3Nibbles(t *testing.T) {
+	fmt.Println("RUNNING TEST: Test3Nibbles")
+	fmt.Println("IN FILE: leaf_test.go")
+
 	key, value := []byte{5, 0, 6}, []byte("coin")
 	hexs := printEachCalculationSteps(key, value, true)
 	fmt.Printf("key_hex: %x\n", key)
@@ -59,12 +68,17 @@ func Test3Nibbles(t *testing.T) {
 }
 
 func TestLeafNode(t *testing.T) {
+	fmt.Println("RUNNING TEST: TestLeafNode")
+	fmt.Println("IN FILE: leaf_test.go")
+
 	nibbles, value := []byte{1, 2, 3, 4}, []byte("verb")
 	l := NewLeafNodeFromBytes(nibbles, value)
 	require.Equal(t, "2bafd1eef58e8707569b7c70eb2f91683136910606ba7e31d07572b8b67bf5c6", fmt.Sprintf("%x", l.Hash()))
 }
 
 func TestLeafNode2(t *testing.T) {
+	fmt.Println("RUNNING TEST: TestLeafNode2")
+	fmt.Println("IN FILE: leaf_test.go")
 	// t.Skip()
 	nibbles, value := []byte{5, 0, 6}, []byte("coin")
 	l, err := NewLeafNodeFromNibbleBytes(nibbles, value)

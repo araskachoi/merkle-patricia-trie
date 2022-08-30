@@ -13,6 +13,9 @@ func hexEqual(t *testing.T, hex string, bytes []byte) {
 
 // check basic key-value mapping
 func TestGetPut(t *testing.T) {
+	fmt.Println("RUNNING TEST: TestGetPut")
+	fmt.Println("IN FILE: trie_test.go")
+
 	t.Run("should get nothing if key does not exist", func(t *testing.T) {
 		trie := NewTrie()
 		_, found := trie.Get([]byte("notexist"))
@@ -39,6 +42,9 @@ func TestGetPut(t *testing.T) {
 
 // verify data integrity
 func TestDataIntegrity(t *testing.T) {
+	fmt.Println("RUNNING TEST: TestDataIntegrity")
+	fmt.Println("IN FILE: trie_test.go")
+
 	t.Run("should get a different hash if a new key-value pair was added or updated", func(t *testing.T) {
 		trie := NewTrie()
 		hash0 := trie.Hash()
@@ -71,6 +77,9 @@ func TestDataIntegrity(t *testing.T) {
 }
 
 func TestPut2Pairs(t *testing.T) {
+	fmt.Println("RUNNING TEST: TestPut2Pairs")
+	fmt.Println("IN FILE: trie_test.go")
+
 	trie := NewTrie()
 	trie.Put([]byte{1, 2, 3, 4}, []byte("verb"))
 	trie.Put([]byte{1, 2, 3, 4, 5, 6}, []byte("coin"))
@@ -98,6 +107,9 @@ func TestPut2Pairs(t *testing.T) {
 }
 
 func TestPut(t *testing.T) {
+	fmt.Println("RUNNING TEST: TestPut")
+	fmt.Println("IN FILE: trie_test.go")
+
 	trie := NewTrie()
 	require.Equal(t, EmptyNodeHash, trie.Hash())
 	trie.Put([]byte{1, 2, 3, 4}, []byte("hello"))
@@ -106,6 +118,9 @@ func TestPut(t *testing.T) {
 }
 
 func TestPutLeafShorter(t *testing.T) {
+	fmt.Println("RUNNING TEST: TestPutLeafShorter")
+	fmt.Println("IN FILE: trie_test.go")
+
 	trie := NewTrie()
 	trie.Put([]byte{1, 2, 3, 4}, []byte("hello"))
 	trie.Put([]byte{1, 2, 3}, []byte("world"))
@@ -122,6 +137,9 @@ func TestPutLeafShorter(t *testing.T) {
 }
 
 func TestPutLeafAllMatched(t *testing.T) {
+	fmt.Println("RUNNING TEST: TestPutLeafAllMatched")
+	fmt.Println("IN FILE: trie_test.go")
+
 	trie := NewTrie()
 	trie.Put([]byte{1, 2, 3, 4}, []byte("hello"))
 	trie.Put([]byte{1, 2, 3, 4}, []byte("world"))
@@ -131,6 +149,9 @@ func TestPutLeafAllMatched(t *testing.T) {
 }
 
 func TestPutLeafMore(t *testing.T) {
+	fmt.Println("RUNNING TEST: TestPutLeafMore")
+	fmt.Println("IN FILE: trie_test.go")
+
 	trie := NewTrie()
 	trie.Put([]byte{1, 2, 3, 4}, []byte("hello"))
 	trie.Put([]byte{1, 2, 3, 4, 5, 6}, []byte("world"))
@@ -147,6 +168,9 @@ func TestPutLeafMore(t *testing.T) {
 }
 
 func TestPutOrder(t *testing.T) {
+	fmt.Println("RUNNING TEST: TestPutOrder")
+	fmt.Println("IN FILE: trie_test.go")
+
 	trie1, trie2 := NewTrie(), NewTrie()
 
 	trie1.Put([]byte{1, 2, 3, 4, 5, 6}, []byte("world"))

@@ -13,10 +13,16 @@ import (
 )
 
 func GetKittySlot(slotIndexForKitties int, kittyID int) [32]byte {
+	fmt.Println("RUNNING TEST: GetKittySlot")
+	fmt.Println("IN FILE: kitties_proof_test.go")
+
 	return GetSlotForArrayItem(slotIndexForKitties, kittyID, 2)
 }
 
 func TestKittiesProof(t *testing.T) {
+	fmt.Println("RUNNING TEST: TestKittiesProof")
+	fmt.Println("IN FILE: kitties_proof_test.go")
+
 	slotIndexForKitties := 6
 	ckContractAddress := common.HexToAddress("0x06012c8cf97bead5deae237070f9587f8e7a266d")
 	blockNumber := uint64(15289000)
@@ -70,6 +76,9 @@ func TestKittiesProof(t *testing.T) {
 
 // verify the proof and return value if the proof is valid
 func GetValueFromProof(result *StorageStateResult) ([]byte, error) {
+	fmt.Println("RUNNING TEST: GetValueFromProof")
+	fmt.Println("IN FILE: kitties_proof_test.go")
+
 	// the storage hash and the proof is the data to be verified
 	storageHash := result.StorageHash
 	storageProof := result.StorageProof[0]
