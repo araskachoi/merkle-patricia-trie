@@ -17,40 +17,48 @@ import (
 func TestStorageTrie(t *testing.T) {
 	fmt.Println("RUNNING TEST: TestStorageTrie")
 	fmt.Println("IN FILE: storage_proof_test.go")
-	
+
 	// slot indexes
-	// slot0 := common.FromHex("0x0000000000000000000000000000000000000000000000000000000000000000") 
-		// 0x4e46545475746f7269616c000000000000000000000000000000000000000016
+	// slot0 := common.FromHex("0x0000000000000000000000000000000000000000000000000000000000000000")
+	// 0x4e46545475746f7269616c000000000000000000000000000000000000000016
 	// slot1 := common.FromHex("0x0000000000000000000000000000000000000000000000000000000000000001")
-		// 0x4e46540000000000000000000000000000000000000000000000000000000006
+	// 0x4e46540000000000000000000000000000000000000000000000000000000006
+	// slot6: common.FromHex("0x0000000000000000000000000000000000000000000000000000000000000006")
+	// 0x02
+	// slot3: common.FromHex("0x679795a0195a1b76cdebb7c51d74e058aee92919b8c3389af86ef24535e8a28c")
+	// 0x2813736e6204ee248e79c26de69d49bddbe0f7d0
+	// slot4: common.FromHex("0x211f3d93987b5218a32eac3af2b87ceafa2dad2bbbdbe3688f9c11e352c27cd8")
+	// 0x02
+
+	// contract creation transaction (goerli):
+	// https://goerli.etherscan.io/tx/0x8de2944e0c7bd6e93753f6c055984cfab5f1e97fad36c580327bca3fe61457a1#statechange
+	// mint NFT index 0:
+	// https://goerli.etherscan.io/tx/0x27bfae83807487dbf4a24b944ec14cb5a430b5a4024e05c3e6ef8179af6d2299#statechange
+	// mint NFT index 1:
+	// https://goerli.etherscan.io/tx/0x628f3ae6afe1497c3c792c981adbfed4341911f0c99155af40bd4160a0c760f6#statechange
 
 	nameSlot := common.FromHex("0x0000000000000000000000000000000000000000000000000000000000000000")
 	symbolSlot := common.FromHex("0x0000000000000000000000000000000000000000000000000000000000000001")
 	counterSlot := common.FromHex("0x0000000000000000000000000000000000000000000000000000000000000006")
-	ownersSlot := common.FromHex("0x679795a0195a1b76cdebb7c51d74e058aee92919b8c3389af86ef24535e8a28c")
+	owner0Slot := common.FromHex("0x679795a0195a1b76cdebb7c51d74e058aee92919b8c3389af86ef24535e8a28c")
+	owner1Slot := common.FromHex("0xe90b7bceb6e7df5418fb78d8ee546e97c83a08bbccc01a0644d599ccd2a7c2e0")
 	balancesSlot := common.FromHex("0x211f3d93987b5218a32eac3af2b87ceafa2dad2bbbdbe3688f9c11e352c27cd8")
-
-	// encode values to be stored
-	// ownerAddress, err := rlp.EncodeToBytes(common.FromHex("0xde74da73d5102a796559933296c73e7d1c6f37fb"))
-	// require.NoError(t, err)
-
-	// lastCompletedMigration, err := rlp.EncodeToBytes(common.FromHex("0x02"))
-	// require.NoError(t, err)
 
 	name, err := rlp.EncodeToBytes([]byte("NFTTutorial")) // common.FromHex("0x4e46545475746f7269616c000000000000000000000000000000000000000016")
 	require.NoError(t, err)
 	symbol, err := rlp.EncodeToBytes([]byte("NFT")) // common.FromHex("0x4e46540000000000000000000000000000000000000000000000000000000006")
 	require.NoError(t, err)
+	counter, err := rlp.EncodeToBytes(common.FromHex("0x02"))
+	require.NoError(t, err)
 	ownerAddress, err := rlp.EncodeToBytes(common.FromHex("0x2813736e6204ee248e79c26de69d49bddbe0f7d0"))
 	require.NoError(t, err)
-	balances, err := rlp.EncodeToBytes(common.FromHex("0x02")) // should use 0x02 instead of padded hex (identical to the one provided in the "Slot")
+	balances, err := rlp.EncodeToBytes(common.FromHex("0x02")) // need to use 0x02 instead of padded hex (identical to the one provided in the "Slot")
 	require.NoError(t, err)
-	counter, err := rlp.EncodeToBytes(common.FromHex("0x02"))
-
 
 	fmt.Println("nameSlot: ", nameSlot)
 	fmt.Println("symbolSlot: ", symbolSlot)
-	fmt.Println("ownerSlot: ", ownersSlot)
+	fmt.Println("owner0Slot: ", owner0Slot)
+	fmt.Println("owner1Slot: ", owner1Slot)
 	fmt.Println("balanceSlot: ", balancesSlot)
 	fmt.Println("counterSlot: ", counterSlot)
 
@@ -71,7 +79,8 @@ func TestStorageTrie(t *testing.T) {
 	trie.Put(crypto.Keccak256(nameSlot), name)
 	trie.Put(crypto.Keccak256(symbolSlot), symbol)
 	trie.Put(crypto.Keccak256(counterSlot), counter)
-	trie.Put(crypto.Keccak256(ownersSlot), ownerAddress)
+	trie.Put(crypto.Keccak256(owner0Slot), ownerAddress)
+	trie.Put(crypto.Keccak256(owner1Slot), ownerAddress)
 	trie.Put(crypto.Keccak256(balancesSlot), balances)
 
 	// compute the root hash and check if consistent with the storage hash of contract 0xcca577ee56d30a444c73f8fc8d5ce34ed1c7da8b
